@@ -1,10 +1,10 @@
 const express = require('express');
-const app =express();
+const app = express();
 
-app.use("/hello",(req,res) => {
+/* app.use("/hello",(req,res) => {
 res.send("Hello Hello Hello1")
 })
-
+ */
 /* app.use("/user",(req,res) =>{
     console.log(req.query)
 res.send("Default route app.use")
@@ -19,7 +19,7 @@ res.send("Default route app.use")
     console.log(req.params)
 res.send("Default route app.use")
 }) */
-app.get("/user",(req,res) =>{
+/* app.get("/user",(req,res) =>{
     res.send({"firstName":"Rahul","lastName":"Anand"});
 });
 
@@ -28,14 +28,16 @@ app.use("/user/:userId/:name/:password",(req,res) =>{
     console.log(req.params)
 res.send("Default route app.use111")
 }) 
+ */
+/* app.post("/user",(req,res) =>{
 
-app.post("/user",(req,res) =>{
-    res.send("Data Saved successfully");
+
+    res.send("Data Saved successfully1212221121221");
 })
 
 app.delete("/user",(req,res) =>{
 res.send("Data Deleted successfully");
-})
+}) */
 
 
 /* app.use("/",(req, res) =>{
@@ -43,6 +45,36 @@ res.send("Data Deleted successfully");
 }); */
 
 
+/* app.use("/user", 
+    (req,res,next) =>{
+        console.log("Resquest Handler 1");
+        //res.send("Hellow from Request Handler 1");
+        next();
+    },
+    (req, res) =>{
+        console.log("Resquest Handler 2");
+        res.send("Hello from Request Handler 2");
+    }
+)
+ */
+
+app.use("/user", 
+    (req,res,next) =>{
+        console.log("Resquest Handler 1");
+        //res.send("Hellow from Request Handler 1");
+        next();
+    }
+
+)
+
+app.use("/user", 
+    (req,res,next) =>{
+        console.log("Resquest Handler 2");
+        res.send("Hellow from Request Handler 2");
+    
+    }
+
+)
 app.listen(7777, () =>{
     console.log("server is  successfully listening to port 7777..")
 })
