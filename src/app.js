@@ -82,11 +82,23 @@ app.use("/user",
     app.use("/admin", adminAuth);
 
     app.get("/admin/getAllData", (req,res) =>{
-        res.send("All data for admin sent successfully");
+        try{
+            throw new Error("sajfnjknjkn");
+            res.send("All data for admin sent successfully");
+        }catch(err){
+            res.status(500).send("Some issue with fetching datafor admin");
+        }
     })
 
     app.delete("/admin/deleteAllData", (req,res) =>{
+        throw new Error("sajfnjknjkn");
         res.send("All data Deleted successfully !!!!");
+    })
+
+    app.use("/",(err, req, res,next) =>{
+        if(err){
+            res.status(500).send("Something went wrong");
+        }
     })
 app.listen(7777, () =>{
     console.log("server is  successfully listening to port 7777..")
