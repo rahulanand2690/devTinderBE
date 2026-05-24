@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const {adminAuth} = require('./utils/auth.js');
 
 /* app.use("/hello",(req,res) => {
 res.send("Hello Hello Hello1")
@@ -58,7 +59,7 @@ res.send("Data Deleted successfully");
 )
  */
 
-app.use("/user", 
+/* app.use("/user", 
     (req,res,next) =>{
         console.log("Resquest Handler 1");
         //res.send("Hellow from Request Handler 1");
@@ -74,7 +75,19 @@ app.use("/user",
     
     }
 
-)
+) */
+
+    // Mddlewares in Node Js
+
+    app.use("/admin", adminAuth);
+
+    app.get("/admin/getAllData", (req,res) =>{
+        res.send("All data for admin sent successfully");
+    })
+
+    app.delete("/admin/deleteAllData", (req,res) =>{
+        res.send("All data Deleted successfully !!!!");
+    })
 app.listen(7777, () =>{
     console.log("server is  successfully listening to port 7777..")
 })
